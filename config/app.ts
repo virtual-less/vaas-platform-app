@@ -85,7 +85,8 @@ export async function getAppConfigByAppName(appName:string):Promise<VaasServerTy
         return {
             maxWorkerNum: 2,
             allowModuleSet: new Set(['*']),
-            timeout: 30*1000
+            timeout: 30*1000,
+            useVmLoadDependencies: true
         }
     }
     const appConfigData = await getAppConfigDataByName({appName, isCache:true})

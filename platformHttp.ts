@@ -152,7 +152,8 @@ export class PlatformHttp {
                 maxWorkerNum,
                 allowModuleSet,
                 timeout,
-                resourceLimits
+                resourceLimits,
+                useVmLoadDependencies:true
             }
         })
         return {data}
@@ -175,7 +176,8 @@ export class PlatformHttp {
                 maxWorkerNum,
                 allowModuleSet,
                 timeout,
-                resourceLimits
+                resourceLimits,
+                useVmLoadDependencies:true
             }
         })
         return {data}
