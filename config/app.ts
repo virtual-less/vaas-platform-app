@@ -59,13 +59,13 @@ function getDirFilePathList(filePathList:Array<string>, dirPath:string) {
 }
 
 let PlatformPublicFilePathSet = null
-export async function getAppNameByRequest(request:VaasServerType.RequestConfig):Promise<string> {
+export async function getAppNameByRequest(request:VaasServerType.RequestConfig):Promise<{appName:string,prefix:string}> {
     const host = request.hostname
     // 配置优先
     const hostConfigList = await getHostConfigByHost({host, isCache:true})
     if(hostConfigList) {
         for(const hostConfig of hostConfigList) {
-            return hostConfig.value.appName
+            return {appName:hostConfig.value.appName,prefix:'/'}
         }
     }
     // 否则默认渲染platform
@@ -75,9 +75,9 @@ export async function getAppNameByRequest(request:VaasServerType.RequestConfig):
     }
     let isExist = PlatformPublicFilePathSet.has(publicPath)
     if(isExist || request.path==='/') {
-        return 'platform'
+        return {appName:'platform',prefix:'/'}
     }
-    return ''
+    return {appName:'',prefix:''}
 }
 
 export async function getAppConfigByAppName(appName:string):Promise<VaasServerType.AppConfig> {
@@ -98,10 +98,10 @@ export async function getAppConfigByAppName(appName:string):Promise<VaasServerTy
     return appConfig
 }
 
-export async function getByPassFlowVersion(appName:string):Promise<string> {
+export async function getByPassFlowVersion(appName:string):Promise<{version:string}> {
     let version = ''
     if(isSysAppByAppName({appName})) {
-        return version
+        return {version}
     }
     const byPassData = await getByPassDataByAppName({appName})
     if(!byPassData) {
@@ -109,5 +109,5 @@ export async function getByPassFlowVersion(appName:string):Promise<string> {
     }
     version = getVersionByByPassData(byPassData.value)
     await deployVersionApp({appName, version})
-    return version
+    return {version}
 }
