@@ -12,6 +12,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@types/minio": "^7.0.14"
+    "@types/minio": "^7.0.14",
+    "@types/node": "^16.18.79"
   }
 }
