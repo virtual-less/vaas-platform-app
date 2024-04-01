@@ -13,8 +13,8 @@ export default{
             endPoint: process.env.VAAS_PLATFORM_MINIO_HOST || '127.0.0.1',
             port: parseInt(process.env.VAAS_PLATFORM_MINIO_PORT) || 9000,
             useSSL:false,
-            accessKey: process.env.VAAS_PLATFORM_MINIO_ACCESSKEY|| '',
-            secretKey: process.env.VAAS_PLATFORM_MINIO_SECRETKEY || '',
+            accessKey: process.env.VAAS_PLATFORM_MINIO_ACCESSKEY|| 'minio-root-user',
+            secretKey: process.env.VAAS_PLATFORM_MINIO_SECRETKEY || 'minio-root-password',
             bucket: process.env.VAAS_PLATFORM_MINIO_BUCKET || 'vaas-bucket',
         }
     }
